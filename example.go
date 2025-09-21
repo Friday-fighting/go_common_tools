@@ -1,20 +1,8 @@
-# go_common_tools
-常用go工具
-
-# Usage
-## import
-```bash
-go get "github.com/Friday-fighting/go_common_tools"
-```
-
-
-```go
-package main
+package go_common_tools
 
 import (
 	"log"
 	"os"
-	"github.com/Friday-fighting/go_common_tools"
 )
 
 func main() {
@@ -32,13 +20,13 @@ func main() {
 			log.Printf("清理临时目录失败: %v", err)
 		}
 	}()
-	localPath, err := go_common_tools.DownloadFromUrl(url, tempDir)
+	localPath, err := DownloadFromUrl(url, tempDir)
 	if err != nil {
 		panic(err)
 	}
 	// 临时下载，无论成败最后删本地文件
 	defer os.Remove(localPath)
-	fileContents, err := go_common_tools.ReadFileContent(localPath)
+	fileContents, err := ReadFileContent(localPath)
 	if err != nil {
 		panic(err)
 	}
@@ -55,4 +43,3 @@ func main() {
 		}
 	}
 }
-```
