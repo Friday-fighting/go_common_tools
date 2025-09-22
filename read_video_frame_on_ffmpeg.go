@@ -14,7 +14,7 @@ import (
 // frameParam: >1 表示第几帧(1-base)，<1 表示百分比(0.1=10%)
 func ReadSpecifiedFrame(videoPath string, frameParam float64) ([]byte, error) {
 	// 1. 获取总帧数
-	totalFrames, err := getTotalFrames(videoPath)
+	totalFrames, err := getTotalFramesA(videoPath)
 	if err != nil {
 		return nil, fmt.Errorf("getTotalFrames: %w", err)
 	}
@@ -53,7 +53,7 @@ func ReadSpecifiedFrame(videoPath string, frameParam float64) ([]byte, error) {
 }
 
 // getTotalFrames 调用 ffprobe 返回视频总帧数
-func getTotalFrames(videoPath string) (int, error) {
+func getTotalFramesA(videoPath string) (int, error) {
 	cmd := exec.Command("ffprobe",
 		"-v", "error",
 		"-select_streams", "v:0",
